@@ -1,5 +1,4 @@
 #
-# Source0-md5:	94dd2c5792dcdcb37cd9cf5b85d5b8f1
 Summary:	Apache Directory Studio
 Name:		ApacheDirectoryStudio
 Version:	1.2.0.v20080724
@@ -11,6 +10,7 @@ BuildRequires:	maven
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	unzip
 Source0:	http://www.apache.net.pl/directory/studio/stable/1.2.0-RC1/%{name}-sources-%{version}.zip
+#Source0-md5:	94dd2c5792dcdcb37cd9cf5b85d5b8f1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		arch	x86
