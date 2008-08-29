@@ -1,16 +1,16 @@
-#
-Summary:	Apache Directory Studio
+Summary:	Apache Directory Studio - LDAP tooling platform
+Summary(pl.UTF-8):	Apache Directory Studio - platforma narzędzi LDAP
 Name:		ApacheDirectoryStudio
 Version:	1.2.0.v20080724
 Release:	0.1
 License:	Apache
 Group:		Applications
+Source0:	http://www.apache.org/dist/directory/studio/stable/1.2.0-RC1/%{name}-sources-%{version}.zip
+#Source0-md5:	94dd2c5792dcdcb37cd9cf5b85d5b8f1
 URL:		http://directory.apache.org/
 BuildRequires:	maven
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	unzip
-Source0:	http://www.apache.net.pl/directory/studio/stable/1.2.0-RC1/%{name}-sources-%{version}.zip
-#Source0-md5:	94dd2c5792dcdcb37cd9cf5b85d5b8f1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		arch	x86
@@ -20,6 +20,12 @@ Apache Directory Studio (formerly known as LDAP Studio) is a complete
 LDAP tooling platform intended to be used with any LDAP server however
 it is particularly designed for use with the Apache Directory Server.
 
+%description -l pl.UTF-8
+Apache Directory Studio (wcześniej znane jako LDAP Studio) to
+kompletna platforma narzędzi LDAP przeznaczona do użytku z dowolnym
+serwerem LDAP, jednak jest najlepiej dopasowana do Apache Directory
+Servera.
+
 %prep
 %setup -q -n %{name}-sources-%{version}
 
@@ -28,8 +34,7 @@ export M2_HOME="%{_datadir}/maven"
 export JAVA_HOME="%{java_home}"
 cd studio-plugin
 mvn clean install
-cd ..
-cd studio
+cd ../studio
 mvn clean install
 
 %install
