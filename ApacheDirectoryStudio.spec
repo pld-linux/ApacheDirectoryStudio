@@ -1,19 +1,21 @@
+#
+%define	_snap	745477
 Summary:	Apache Directory Studio - LDAP tooling platform
 Summary(pl.UTF-8):	Apache Directory Studio - platforma narzędzi LDAP
 Name:		ApacheDirectoryStudio
-Version:	1.2.0.v20080724
-Release:	0.1
+Version:	1.4.0
+Release:	0.%{_snap}.1
 License:	Apache
 Group:		Applications
-Source0:	http://www.apache.org/dist/directory/studio/stable/1.2.0-RC1/%{name}-sources-%{version}.zip
-#Source0-md5:	94dd2c5792dcdcb37cd9cf5b85d5b8f1
+Source0:	%{name}-%{version}-%{_snap}.tar.bz2
+# Source0-md5:	dcb0c4a4be7ee9aefcd71c205d189f51
 URL:		http://directory.apache.org/
 BuildRequires:	maven
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		arch	x86
+%define		arch	x86_64
 
 %description
 Apache Directory Studio (formerly known as LDAP Studio) is a complete
@@ -27,14 +29,11 @@ serwerem LDAP, jednak jest najlepiej dopasowana do Apache Directory
 Servera.
 
 %prep
-%setup -q -n %{name}-sources-%{version}
+%setup -q -n studio 
 
 %build
 export M2_HOME="%{_datadir}/maven"
 export JAVA_HOME="%{java_home}"
-cd studio-plugin
-mvn clean install
-cd ../studio
 mvn clean install
 
 %install
@@ -42,7 +41,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_datadir}/%{name},%{_pixmapsdir},%{_desktopdir},%{_bindir}}
 pwd
 install 'tools/Debian Package/package/usr/share/applications/apachedirectorystudio.desktop' $RPM_BUILD_ROOT%{_desktopdir}
-cd target/distributions/%{name}-linux-%{arch}-%{version}
+cd target/distributions/%{name}-linux-%{arch}-%{version}-SNAPSHOT
 cp -rf configuration $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -rf features $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -rf plugins $RPM_BUILD_ROOT%{_datadir}/%{name}
