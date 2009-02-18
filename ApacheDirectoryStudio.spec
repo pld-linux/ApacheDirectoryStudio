@@ -11,6 +11,7 @@ Source0:	%{name}-%{version}-%{_snap}.tar.bz2
 # Source0-md5:	dcb0c4a4be7ee9aefcd71c205d189f51
 URL:		http://directory.apache.org/
 BuildRequires:	maven
+BuildRequires:	java-sun-jre
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -33,7 +34,7 @@ Servera.
 
 %build
 export M2_HOME="%{_datadir}/maven"
-export JAVA_HOME="%{java_home}"
+export JAVA_HOME="/usr/%{_lib}/jvm/java"
 mvn clean install
 
 %install
