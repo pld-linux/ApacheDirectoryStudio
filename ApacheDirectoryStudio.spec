@@ -10,13 +10,12 @@ Group:		Applications
 Source0:	%{name}-%{version}-%{_snap}.tar.bz2
 # Source0-md5:	dcb0c4a4be7ee9aefcd71c205d189f51
 URL:		http://directory.apache.org/
-BuildRequires:	maven
 BuildRequires:	java-sun-jre
+BuildRequires:	maven
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	unzip
+ExclusiveArch:	i586 i686 athlon pentium3 pentium4 %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		arch	x86_64
 
 %description
 Apache Directory Studio (formerly known as LDAP Studio) is a complete
@@ -30,19 +29,22 @@ serwerem LDAP, jednak jest najlepiej dopasowana do Apache Directory
 Servera.
 
 %prep
-%setup -q -n studio 
+%setup -q -n studio
 
 %build
 export M2_HOME="%{_datadir}/maven"
-export JAVA_HOME="/usr/%{_lib}/jvm/java"
+export JAVA_HOME="%{_prefix}/%{_lib}/jvm/java"
 mvn clean install
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_datadir}/%{name},%{_pixmapsdir},%{_desktopdir},%{_bindir}}
 pwd
-install 'tools/Debian Package/package/usr/share/applications/apachedirectorystudio.desktop' $RPM_BUILD_ROOT%{_desktopdir}
-cd target/distributions/%{name}-linux-%{arch}-%{version}-SNAPSHOT
+install 'tools/Debian Package/package%{_datadir}/applications/apachedirectorystudio.desktop' $RPM_BUILD_ROOT%{_desktopdir}
+%if "%{_lib}" == "lib64"
+cd target/distributions/%{name}-linux-x86_64-%{version}-SNAPSHOT
+%else
+cd target/distributions/%{name}-linux-x86-%{version}-SNAPSHOT
 cp -rf configuration $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -rf features $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -rf plugins $RPM_BUILD_ROOT%{_datadir}/%{name}
