@@ -45,6 +45,7 @@ install 'tools/Debian Package/package%{_datadir}/applications/apachedirectorystu
 cd target/distributions/%{name}-linux-x86_64-%{version}-SNAPSHOT
 %else
 cd target/distributions/%{name}-linux-x86-%{version}-SNAPSHOT
+%endif
 cp -rf configuration $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -rf features $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -rf plugins $RPM_BUILD_ROOT%{_datadir}/%{name}
