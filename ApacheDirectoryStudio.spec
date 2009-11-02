@@ -7,14 +7,16 @@ Version:	1.4.0
 Release:	0.%{_reldate}.1
 License:	Apache
 Group:		Applications
-Source0:	http://www.apache.net.pl/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-x86-%{version}.v%{_reldate}.tar.gz
+Source0:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-x86-%{version}.v%{_reldate}.tar.gz
 # Source0-md5:	3bc4b96993eab40f8429893087f0430e
-Source1:	http://www.apache.net.pl/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-x86_64-%{version}.v%{_reldate}.tar.gz
+Source1:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-x86_64-%{version}.v%{_reldate}.tar.gz
 # Source1-md5:	38c037ebaa0999efe1e3fcce61e3ed50
+Source2:    http://www.apache.org/dist/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-ppc-%{version}.v%{_reldate}.tar.gz
+# Source2-md5:	c16a9f50e270c3fd053336eb72c6f4b8
+Source3:    apachedirectorystudio.desktop
 URL:		http://directory.apache.org/
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	java-sun
-ExclusiveArch:	i586 i686 athlon pentium3 pentium4 %{x8664}
+ExclusiveArch:	%{ix86} %{x8664} ppc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,17 +32,22 @@ Servera.
 
 %prep
 %ifarch %{ix86}
-%setup -q -n %{name}-linux-x86-%{version}.v%{_reldate}
-%else
-%setup -q -b1 -n %{name}-linux-x86_64-%{version}.v%{_reldate}
+%setup -q -b1 -b2 -n %{name}-linux-x86-%{version}.v%{_reldate}
+%endif
+%ifarch %{x8664}
+%setup -q -b1 -b2 -n %{name}-linux-x86_64-%{version}.v%{_reldate}
+%endif
+%ifarch ppc
+%setup -q -b1 -b2 -n %{name}-linux-ppc-%{version}.v%{_reldate}
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_datadir}/%{name},%{_pixmapsdir},%{_bindir}}
+install -d $RPM_BUILD_ROOT{%{_datadir}/%{name},%{_pixmapsdir},%{_desktopdir},%{_bindir}}
 cp -a {configuration,features,plugins} $RPM_BUILD_ROOT%{_datadir}/%{name}
 install ApacheDirectoryStudio.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
 install ApacheDirectoryStudio $RPM_BUILD_ROOT%{_datadir}/%{name}
+install %{SOURCE3} $RPM_BUILD_ROOT%{_desktopdir}/
 ln -s %{_datadir}/%{name}/%{name} $RPM_BUILD_ROOT%{_bindir}/apachedirectorystudio
 
 %clean
@@ -56,3 +63,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/features
 %{_datadir}/%{name}/plugins
 %{_pixmapsdir}/ApacheDirectoryStudio.xpm
+%{_desktopdir}/apachedirectorystudio.desktop
