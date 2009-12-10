@@ -1,22 +1,20 @@
 #
-%define     _reldate    20090407
+%define     _reldate    20091130
 Summary:	Apache Directory Studio - LDAP tooling platform
 Summary(pl.UTF-8):	Apache Directory Studio - platforma narzędzi LDAP
 Name:		ApacheDirectoryStudio
-Version:	1.4.0
+Version:	1.5.1
 Release:	0.%{_reldate}.1
 License:	Apache
 Group:		Applications
-Source0:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-x86-%{version}.v%{_reldate}.tar.gz
-# Source0-md5:	3bc4b96993eab40f8429893087f0430e
-Source1:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-x86_64-%{version}.v%{_reldate}.tar.gz
-# Source1-md5:	38c037ebaa0999efe1e3fcce61e3ed50
-Source2:    http://www.apache.org/dist/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-ppc-%{version}.v%{_reldate}.tar.gz
-# Source2-md5:	c16a9f50e270c3fd053336eb72c6f4b8
-Source3:    apachedirectorystudio.desktop
-URL:		http://directory.apache.org/
+Source0:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-x86-%{version}.V%{_reldate}.tar.gz
+# Source0-md5:	d3ffa80932d2eaa194b04dfda34c98aa
+Source1:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-x86_64-%{version}.V%{_reldate}.tar.gz
+# Source1-md5:	48f91cb44e357c425ee0312787f9ab6d
+Source2:	apachedirectorystudio.desktop
+URL:		http://directory.apache.org/studio/
 BuildRequires:	rpmbuild(macros) >= 1.300
-ExclusiveArch:	%{ix86} %{x8664} ppc
+ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,13 +30,10 @@ Servera.
 
 %prep
 %ifarch %{ix86}
-%setup -q -b1 -b2 -n %{name}-linux-x86-%{version}.v%{_reldate}
+%setup -q -b1 -n %{name}-linux-x86-%{version}.V%{_reldate}
 %endif
 %ifarch %{x8664}
-%setup -q -b1 -b2 -n %{name}-linux-x86_64-%{version}.v%{_reldate}
-%endif
-%ifarch ppc
-%setup -q -b1 -b2 -n %{name}-linux-ppc-%{version}.v%{_reldate}
+%setup -q -b1 -n %{name}-linux-x86_64-%{version}.V%{_reldate}
 %endif
 
 %install
@@ -47,7 +42,7 @@ install -d $RPM_BUILD_ROOT{%{_datadir}/%{name},%{_pixmapsdir},%{_desktopdir},%{_
 cp -a {configuration,features,plugins} $RPM_BUILD_ROOT%{_datadir}/%{name}
 install ApacheDirectoryStudio.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
 install ApacheDirectoryStudio $RPM_BUILD_ROOT%{_datadir}/%{name}
-install %{SOURCE3} $RPM_BUILD_ROOT%{_desktopdir}/
+install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}/
 ln -s %{_datadir}/%{name}/%{name} $RPM_BUILD_ROOT%{_bindir}/apachedirectorystudio
 
 %clean
