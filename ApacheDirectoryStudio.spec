@@ -1,15 +1,15 @@
-#
-%define     _reldate    20091130
+%define		reldate		20091130
+%define		rel			1
 Summary:	Apache Directory Studio - LDAP tooling platform
 Summary(pl.UTF-8):	Apache Directory Studio - platforma narzędzi LDAP
 Name:		ApacheDirectoryStudio
 Version:	1.5.1
-Release:	0.%{_reldate}.1
+Release:	0.%{reldate}.%{rel}
 License:	Apache
 Group:		Applications
-Source0:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-x86-%{version}.V%{_reldate}.tar.gz
+Source0:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{reldate}/%{name}-linux-x86-%{version}.V%{reldate}.tar.gz
 # Source0-md5:	d3ffa80932d2eaa194b04dfda34c98aa
-Source1:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{_reldate}/%{name}-linux-x86_64-%{version}.V%{_reldate}.tar.gz
+Source1:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{reldate}/%{name}-linux-x86_64-%{version}.V%{reldate}.tar.gz
 # Source1-md5:	48f91cb44e357c425ee0312787f9ab6d
 Source2:	apachedirectorystudio.desktop
 URL:		http://directory.apache.org/studio/
@@ -31,19 +31,19 @@ Servera.
 
 %prep
 %ifarch %{ix86}
-%setup -q -b1 -n %{name}-linux-x86-%{version}.V%{_reldate}
+%setup -q -b1 -n %{name}-linux-x86-%{version}.V%{reldate}
 %endif
 %ifarch %{x8664}
-%setup -q -b1 -n %{name}-linux-x86_64-%{version}.V%{_reldate}
+%setup -q -b1 -n %{name}-linux-x86_64-%{version}.V%{reldate}
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_datadir}/%{name},%{_pixmapsdir},%{_desktopdir},%{_bindir}}
-cp -a {configuration,features,plugins} $RPM_BUILD_ROOT%{_datadir}/%{name}
-install ApacheDirectoryStudio.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
-install ApacheDirectoryStudio $RPM_BUILD_ROOT%{_datadir}/%{name}
-install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}/
+cp -a configuration features plugins $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a ApacheDirectoryStudio.xpm $RPM_BUILD_ROOT%{_pixmapsdir}
+install -p ApacheDirectoryStudio $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
 ln -s %{_datadir}/%{name}/%{name} $RPM_BUILD_ROOT%{_bindir}/apachedirectorystudio
 
 %clean
