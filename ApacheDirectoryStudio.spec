@@ -1,16 +1,16 @@
-%define		reldate		20091130
+%define		reldate		20091211
 %define		rel			1
 Summary:	Apache Directory Studio - LDAP tooling platform
 Summary(pl.UTF-8):	Apache Directory Studio - platforma narzędzi LDAP
 Name:		ApacheDirectoryStudio
-Version:	1.5.1
+Version:	1.5.2
 Release:	0.%{reldate}.%{rel}
 License:	Apache
 Group:		Applications
-Source0:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{reldate}/%{name}-linux-x86-%{version}.V%{reldate}.tar.gz
-# Source0-md5:	d3ffa80932d2eaa194b04dfda34c98aa
-Source1:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{reldate}/%{name}-linux-x86_64-%{version}.V%{reldate}.tar.gz
-# Source1-md5:	48f91cb44e357c425ee0312787f9ab6d
+Source0:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{reldate}/%{name}-linux-x86-%{version}.v%{reldate}.tar.gz
+# Source0-md5:	ecedebfac3b7aa8b72cb520b1b85188e
+Source1:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{reldate}/%{name}-linux-x86_64-%{version}.v%{reldate}.tar.gz
+# Source1-md5:	e543dc8f19f4f6e55a02b9591d8f36bc
 Source2:	apachedirectorystudio.desktop
 URL:		http://directory.apache.org/studio/
 BuildRequires:	rpmbuild(macros) >= 1.300
@@ -31,10 +31,10 @@ Servera.
 
 %prep
 %ifarch %{ix86}
-%setup -q -b1 -n %{name}-linux-x86-%{version}.V%{reldate}
+%setup -q -b1 -n %{name}-linux-x86-%{version}.v%{reldate}
 %endif
 %ifarch %{x8664}
-%setup -q -b1 -n %{name}-linux-x86_64-%{version}.V%{reldate}
+%setup -q -b1 -n %{name}-linux-x86_64-%{version}.v%{reldate}
 %endif
 
 %install
