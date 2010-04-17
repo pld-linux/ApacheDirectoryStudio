@@ -14,7 +14,7 @@ Source1:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{reldat
 Source2:	apachedirectorystudio.desktop
 URL:		http://directory.apache.org/studio/
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	java-sun-jre
+Requires:	jre-X11
 ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
