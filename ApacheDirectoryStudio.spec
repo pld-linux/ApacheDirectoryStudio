@@ -1,16 +1,16 @@
-%define		reldate		20091211
+%define		reldate		20100330
 %define		rel			1
 Summary:	Apache Directory Studio - LDAP tooling platform
 Summary(pl.UTF-8):	Apache Directory Studio - platforma narzędzi LDAP
 Name:		ApacheDirectoryStudio
-Version:	1.5.2
+Version:	1.5.3
 Release:	0.%{reldate}.%{rel}
 License:	Apache
 Group:		Applications
 Source0:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{reldate}/%{name}-linux-x86-%{version}.v%{reldate}.tar.gz
-# Source0-md5:	ecedebfac3b7aa8b72cb520b1b85188e
+# Source0-md5:	315e4726121aa84c93e92f5f0db2884c
 Source1:	http://www.apache.org/dist/directory/studio/stable/%{version}.v%{reldate}/%{name}-linux-x86_64-%{version}.v%{reldate}.tar.gz
-# Source1-md5:	e543dc8f19f4f6e55a02b9591d8f36bc
+# Source1-md5:	613d07f7befbb8cc44c462a6ec262719
 Source2:	apachedirectorystudio.desktop
 URL:		http://directory.apache.org/studio/
 BuildRequires:	rpmbuild(macros) >= 1.300
