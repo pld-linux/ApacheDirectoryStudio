@@ -6,4 +6,4 @@ GenericName=Apache Directory Studio
 Comment=LDAP Browser and Directory Client
 Type=Application
 Exec=apachedirectorystudio
-Categories=Accessories;
+Categories=Network;Database;

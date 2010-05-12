@@ -1,5 +1,5 @@
 %define		reldate		20100330
-%define		rel			1
+%define		rel			2
 Summary:	Apache Directory Studio - LDAP tooling platform
 Summary(pl.UTF-8):	Apache Directory Studio - platforma narzędzi LDAP
 Name:		ApacheDirectoryStudio
